@@ -1,29 +1,14 @@
-# README #
+# OX APP #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+OX - это универсальная платформа для взаимодействия поставщиков, продавцов и покупателей.
 
-### What is this repository for? ###
+# Папки #
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+* ox_frontend - Клиентская часть приложения
+* ox_backend - Серверная часть приложения
 
-### How do I get set up? ###
+# Стэк #
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+* - Laravel
+* - VueJS
+* - MySQL
