@@ -5,10 +5,18 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use HasApiTokens, Notifiable;
+
+    const ROLES = [
+        'ADMIN' => 1,
+        'CUSTOMER' => 11,
+        'VENDOR' => 12,
+        'SUPPLIER' => 13
+    ];
 
     /**
      * The attributes that are mass assignable.
@@ -16,7 +24,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'role',
     ];
 
     /**
@@ -36,4 +44,35 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function info() {
+        if ($this->isCustomer()) {
+            return $this->hasOne("App\CustomerInfo");
+        } else if ($this->isSupplier()) {
+            return $this->hasOne("App\SupplierInfo");
+        } else if ($this->isVendor()) {
+            return $this->hasOne("App\VendorInfo");
+        }
+    }
+
+    public function getRole($key): int {
+        return self::ROLES[strtoupper($key)];
+    }
+
+    public function isAdmin(): bool {
+        return $this->role === self::ROLES['ADMIN'];
+    }
+
+    public function isCustomer(): bool {
+        return $this->role === self::ROLES['CUSTOMER'];
+    }
+
+    public function isVendor(): bool {
+        return $this->role === self::ROLES['VENDOR'];
+    }
+
+    public function isSupplier(): bool {
+        return $this->role === self::ROLES['SUPPLIER'];
+    }
+
 }
