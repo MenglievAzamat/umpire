@@ -4,6 +4,7 @@ import axios from '../modules/axios'
 
 // MODULES
 import auth from "./modules/auth"
+import user from "./modules/user"
 
 if (localStorage.token) {
     axios.defaults.headers.common["Authorization"] = localStorage.token;
@@ -17,10 +18,15 @@ export default new Vuex.Store({
   },
   mutations: {
       setLoading(state, value) {
-          state.loading = value;
+          if (!value) {
+              setTimeout(() => state.loading = value, 1000);
+          } else {
+              state.loading = value;
+          }
       }
   },
   modules: {
-      auth
+      auth,
+      user
   }
 })

@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Profile from "../views/Profile"
 import NotFound from "../views/NotFound"
-import AddInfo from "../views/AddInfo"
+import VendorHome from "../views/vendor/VendorHome";
 
 Vue.use(VueRouter);
 
@@ -18,11 +18,29 @@ const routes = [
         name: "Profile",
         component: Profile
     },
+
+    // VENDOR
     {
-        path: "/add/info",
-        name: "AddInfo",
-        component: AddInfo
+        path: "/vendor",
+        name: "VendorHome",
+        component: VendorHome
     },
+
+    // SUPPLIER
+    {
+        path: "/supplier",
+        name: "SupplierHome",
+        component: VendorHome
+    },
+
+    // CUSTOMER
+    {
+        path: "/customer",
+        name: "CustomerHomer",
+        component: VendorHome
+    },
+
+    // GLOBAL ROUTES
     {
         path: "*",
         name: "404",

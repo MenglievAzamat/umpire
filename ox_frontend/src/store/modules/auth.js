@@ -11,25 +11,22 @@ export default {
         }
     },
     actions: {
+        async validateToken({ commit }) {
+            commit("setLoading", true);
+
+            await axios.get("/user/validate").then(() => {
+                commit("setLoading", false);
+            })
+        },
+
         async getUser({ commit }) {
             commit("setLoading", true);
 
-            await axios.get("/user/current").then(resp => {
+            return await axios.get("/user/current").then(resp => {
                 commit("setUser", resp.data);
 
-                if (!resp.data.info && router.currentRoute.name !== "AddInfo") {
-                    router.push("/add/info");
-                }
-
                 commit("setLoading", false);
-            });
-        },
-
-        async addInfo({ commit }, data) {
-            commit("setLoading", true);
-
-            await axios.post("/user/info", data).then(() => {
-               location.reload();
+                return resp.data;
             });
         },
 

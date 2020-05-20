@@ -1,6 +1,6 @@
 <template>
     <div class="main-container">
-        <div class="container">
+        <div class="container" :class="{'logged' : loggedIn}">
             <button @click="goToHome">Домой</button>
             <Logo class="logo" color="white"/>
             <button @click="openLoginModal" v-if="!loggedIn">Войти</button>
@@ -30,7 +30,7 @@
     data() {
       return {
         login_modal: false,
-        register_modal: false
+        register_modal: false,
       }
     },
     computed: {
@@ -63,6 +63,15 @@
 </script>
 
 <style scoped lang="scss">
+    .logged {
+        justify-content: flex-end;
+
+        .logo {
+            left: 5rem;
+            transform: unset;
+        }
+    }
+
     .logo {
         width: 10rem;
         height: 10rem;
@@ -70,10 +79,11 @@
         border: 2px solid white;
         border-radius: 50%;
         position: absolute;
-        left: calc(50% - 5rem);
+        left: 50%;
         top: 0;
         z-index: 2;
         overflow: hidden;
+        transform: translateX(-50%);
     }
 
     .main-container {

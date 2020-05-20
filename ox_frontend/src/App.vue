@@ -15,9 +15,9 @@
   export default {
     name: "app",
     components: {Footer, Navbar},
-    created() {
-      if (localStorage.token && !this.$store.state.auth.user) {
-        this.$store.dispatch("getUser");
+    async mounted() {
+      if (localStorage.token) {
+        await this.$store.dispatch("validateToken");
       }
     }
   }
