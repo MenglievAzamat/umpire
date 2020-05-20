@@ -29,6 +29,14 @@ Route::group(
                 Route::get('/logout', 'LogoutController')->middleware('auth:api');
                 Route::get('/current', 'GetUserController')->middleware('auth:api');
                 Route::post('/info', 'PostUserInfoController')->middleware('auth:api');
+                Route::get('/validate', 'CheckTokenController')->middleware('auth:api');
+            }
+        );
+
+        Route::group(
+            ['namespace' => 'User', 'prefix' => '/user'],
+            function () {
+                Route::get('/companies', 'GetCompaniesController')->middleware('auth:api');
             }
         );
     }

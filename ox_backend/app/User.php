@@ -45,13 +45,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function info() {
-        if ($this->isCustomer()) {
-            return $this->hasOne("App\CustomerInfo");
+    public function companies() {
+        if ($this->isVendor()) {
+            return $this->hasMany("App\VendorCompany");
         } else if ($this->isSupplier()) {
-            return $this->hasOne("App\SupplierInfo");
-        } else if ($this->isVendor()) {
-            return $this->hasOne("App\VendorInfo");
+            return $this->hasMany("App\SupplierCompany");
+        } else {
+            return null;
         }
     }
 
