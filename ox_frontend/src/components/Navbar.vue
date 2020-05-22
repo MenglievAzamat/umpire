@@ -1,5 +1,5 @@
 <template>
-    <div class="main-container">
+    <div class="navbar main-container">
         <div class="container" :class="{'logged' : loggedIn}">
             <button @click="goToHome">Домой</button>
             <Logo class="logo" color="white"/>
@@ -63,6 +63,10 @@
 </script>
 
 <style scoped lang="scss">
+    .navbar {
+        min-height: 10vh;
+    }
+
     .logged {
         justify-content: flex-end;
 

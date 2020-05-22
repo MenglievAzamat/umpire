@@ -16,8 +16,8 @@ class CreateSupplierCompaniesTable extends Migration
         Schema::create('supplier_companies', function (Blueprint $table) {
             $table->id();
             $table->integer("user_id");
+            $table->integer("scope_id")->nullable();
             $table->string("name");
-            $table->string("scope");
             $table->timestamps();
         });
     }

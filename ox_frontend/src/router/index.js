@@ -4,6 +4,9 @@ import Home from '../views/Home.vue'
 import Profile from "../views/Profile"
 import NotFound from "../views/NotFound"
 import VendorHome from "../views/vendor/VendorHome";
+import Company from "../views/Company";
+import SupplierHome from "../views/supplier/SupplierHome";
+import CustomerHome from "../views/customer/CustomerHome";
 
 Vue.use(VueRouter);
 
@@ -18,6 +21,11 @@ const routes = [
         name: "Profile",
         component: Profile
     },
+    {
+        path: "/company/:role/:id",
+        name: "Company",
+        component: Company
+    },
 
     // VENDOR
     {
@@ -30,14 +38,14 @@ const routes = [
     {
         path: "/supplier",
         name: "SupplierHome",
-        component: VendorHome
+        component: SupplierHome
     },
 
     // CUSTOMER
     {
         path: "/customer",
         name: "CustomerHomer",
-        component: VendorHome
+        component: CustomerHome
     },
 
     // GLOBAL ROUTES

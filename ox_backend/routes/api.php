@@ -39,5 +39,36 @@ Route::group(
                 Route::get('/companies', 'GetCompaniesController')->middleware('auth:api');
             }
         );
+
+        Route::group(
+            ['namespace' => 'Vendors', 'prefix' => '/vendor'],
+            function () {
+                Route::get('/company/{id}', 'VendorCompanyController@retrieve')->middleware('auth:api');
+                Route::get('/new', 'SupplierCompanyController@create')->middleware('auth:api');
+            }
+        );
+
+        Route::group(
+            ['namespace' => 'Suppliers', 'prefix' => '/supplier'],
+            function () {
+                Route::get('/company/{id}', 'SupplierCompanyController@retrieve')->middleware('auth:api');
+                Route::post('/new', 'SupplierCompanyController@create')->middleware('auth:api');
+            }
+        );
+
+        Route::group(
+            ['namespace' => 'Customers', 'prefix' => '/customer'],
+            function () {
+                Route::get('/products', 'GetProductsController')->middleware('auth:api');
+            }
+        );
+
+        Route::group(
+            ['prefix' => '/scopes'],
+            function() {
+                Route::get('/', 'ScopesController@get');
+                Route::post('/new', 'ScopesController@create');
+            }
+        );
     }
 );

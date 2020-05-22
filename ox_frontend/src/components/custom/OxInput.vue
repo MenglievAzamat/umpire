@@ -7,6 +7,7 @@
             :required="required"
             @input="updateValue($event.target.value)"
             @focusout="checkIfRequired"
+            @keypress.enter="$emit('keypress', $event.target)"
         >
         <p class="errors">{{ errors }}</p>
     </div>

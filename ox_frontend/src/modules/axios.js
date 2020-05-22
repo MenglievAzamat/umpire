@@ -11,7 +11,7 @@ instance.interceptors.response.use(null, error => {
     if (error.response.status) {
         if (error.response.status === 401) {
             localStorage.removeItem("token");
-            location.reload();
+            location.href = "/";
         }
     }
 

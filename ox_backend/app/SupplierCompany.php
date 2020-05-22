@@ -8,8 +8,12 @@ class SupplierCompany extends Model
 {
     protected $fillable = [
         "name",
-        "scope",
+        "scope_id"
     ];
+
+    public function scope() {
+        return $this->belongsTo("App\Scope");
+    }
 
     public function vendors()
     {
@@ -18,6 +22,6 @@ class SupplierCompany extends Model
 
     public function products()
     {
-        return $this->hasMany("App\Product", "company_id");
+        return $this->belongsToMany("App\Product", "supplier_product", "product_id", "supplier_company_id");
     }
 }

@@ -16,7 +16,16 @@ class GetCompaniesController extends Controller
     public function __invoke(Request $request)
     {
         $companies = $request->user()->companies;
+        $result = [];
 
-        return response()->json($companies, 201);
+        foreach ($companies as $company) {
+            array_push($result, [
+                "id" => $company->id,
+                "name" => $company->name,
+                "scope" => $company->scope->title
+            ]);
+        }
+
+        return response()->json($result, 201);
     }
 }

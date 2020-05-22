@@ -1,5 +1,4 @@
 import axios from "../../modules/axios"
-import router from "../../router";
 
 export default {
     state: {

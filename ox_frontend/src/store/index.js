@@ -5,6 +5,8 @@ import axios from '../modules/axios'
 // MODULES
 import auth from "./modules/auth"
 import user from "./modules/user"
+import company from "./modules/company"
+import customer from "./modules/customer";
 
 if (localStorage.token) {
     axios.defaults.headers.common["Authorization"] = localStorage.token;
@@ -27,6 +29,8 @@ export default new Vuex.Store({
   },
   modules: {
       auth,
-      user
+      user,
+      company,
+      customer
   }
 })

@@ -1,6 +1,7 @@
 <?php
 
 use App\Product;
+use App\Scope;
 use App\SupplierCompany;
 use App\User;
 use App\VendorCompany;
@@ -16,6 +17,20 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        $scope1 = new Scope([
+            "title" => "Продукты питания"
+        ]);
+        $scope2 = new Scope([
+            "title" => "Одежда"
+        ]);
+        $scope3 = new Scope([
+            "title" => "Автозапчасти"
+        ]);
+
+        $scope1->save();
+        $scope2->save();
+        $scope3->save();
+
         $user1 = new User(
             [
                 "name" => "Customer",
@@ -48,32 +63,27 @@ class UserSeeder extends Seeder
         // COMPANIES
         $v_company1 = new VendorCompany(
             [
-                "name" => "Vendor Company 1",
-                "scope" => "Продукты питания",
+                "name" => "Vendor Company 1"
             ]
         );
         $v_company2 = new VendorCompany(
             [
-                "name" => "Vendor Company 2",
-                "scope" => "Одежда",
+                "name" => "Vendor Company 2"
             ]
         );
         $s_company1 = new SupplierCompany(
             [
-                "name" => "Supplier Company 1",
-                "scope" => "Одежда",
+                "name" => "Supplier Company 1"
             ]
         );
         $s_company2 = new SupplierCompany(
             [
-                "name" => "Supplier Company 2",
-                "scope" => "Продукты питания",
+                "name" => "Supplier Company 2"
             ]
         );
         $s_company3 = new SupplierCompany(
             [
-                "name" => "Supplier Company 3",
-                "scope" => "Автозапчасти",
+                "name" => "Supplier Company 3"
             ]
         );
 
@@ -131,6 +141,16 @@ class UserSeeder extends Seeder
            $s_company2,
            $s_company3
         ]);
+
+        $scope1->vendors()->saveMany([
+            $v_company1,
+            $s_company2
+        ]);
+        $scope2->suppliers()->saveMany([
+            $s_company1,
+            $v_company2
+        ]);
+        $scope3->suppliers()->save($s_company3);
 
         $v_company1->suppliers()->save($s_company2);
         $v_company2->suppliers()->save($s_company1);
