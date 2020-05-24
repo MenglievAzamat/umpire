@@ -1,11 +1,43 @@
 <template>
-    <div class="container">
-        TODO: Fetch Vendors
+    <div class="container white stretch-y">
+        <ox-loading v-if="loading"/>
+        <div v-else>
+            <div
+                v-for="vendor in vendors"
+                :key="vendor.scope"
+            >
+                <ox-companies
+                    :label="vendor.scope"
+                    :companies="vendor.vendors"
+                    :role="12" />
+                <hr/>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
+  import OxLoading from "../../components/custom/OxLoading";
+  import OxCompanies from "../../components/custom/OxCompanies";
+
   export default {
-    name: "supplier-home"
+    name: "suplier-home",
+    components: {OxCompanies, OxLoading},
+    async mounted() {
+      await this.$store.dispatch("supplierGetVendors")
+          .then(res => {
+            this.vendors = res;
+          });
+    },
+    data() {
+      return {
+        vendors: []
+      }
+    },
+    computed: {
+      loading() {
+        return this.$store.state.loading;
+      }
+    }
   }
 </script>

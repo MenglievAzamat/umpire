@@ -7,6 +7,7 @@ import VendorHome from "../views/vendor/VendorHome";
 import Company from "../views/Company";
 import SupplierHome from "../views/supplier/SupplierHome";
 import CustomerHome from "../views/customer/CustomerHome";
+import Product from "../views/Product";
 
 Vue.use(VueRouter);
 
@@ -46,6 +47,11 @@ const routes = [
         path: "/customer",
         name: "CustomerHomer",
         component: CustomerHome
+    },
+    {
+        path: "/customer/product/:id",
+        name: "Product",
+        component: Product
     },
 
     // GLOBAL ROUTES

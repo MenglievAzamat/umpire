@@ -14,19 +14,12 @@
             <div v-if="user.user.role !== 11">
                 <hr/>
 
-                <h1>Мои организации</h1>
+                <ox-companies
+                    label="Мои организации"
+                    :companies="companies"
+                    :role="user.user.role"
+                />
 
-                <div class="companies">
-                    <div
-                        class="company"
-                        v-for="company in companies"
-                        :key="company.id"
-                        @click="browseCompany(user.user.role, company.id)"
-                    >
-                        <h2><i>"{{ company.name }}"</i></h2>
-                        <h3>Сфера деятельности: <span>{{ company.scope }}</span></h3>
-                    </div>
-                </div>
                 <button class="success" @click="addCompany">Добавить организацию</button>
             </div>
 
@@ -43,10 +36,11 @@
   import OxLoading from "../components/custom/OxLoading";
   import OxInput from "../components/custom/OxInput";
   import AddCompanyModal from "../components/AddCompanyModal";
+  import OxCompanies from "../components/custom/OxCompanies";
 
   export default {
     name: "profile",
-    components: {AddCompanyModal, OxInput, OxLoading},
+    components: {OxCompanies, AddCompanyModal, OxInput, OxLoading},
     async created() {
       if (!this.$store.state.auth.user) {
         await this.$store.dispatch("getUser").then(user => {
@@ -86,9 +80,6 @@
     methods: {
       async logout() {
         await this.$store.dispatch("logout");
-      },
-      browseCompany(role, company_id) {
-        this.$router.push(`/company/${role}/${company_id}`);
       },
 
       addCompany() {

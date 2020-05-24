@@ -98,8 +98,7 @@ class UserSeeder extends Seeder
                         "Жирность" => "1.5%",
                         "Объём" => "1 литр"
                     ]
-                ),
-                "quantity" => 1000
+                )
             ]
         );
         $product2 = new Product(
@@ -112,8 +111,7 @@ class UserSeeder extends Seeder
                         "Размер" => "М",
                         "Цвет" => "Чёрный",
                     ]
-                ),
-                "quantity" => 1500
+                )
             ]
         );
         $product3 = new Product(
@@ -126,8 +124,7 @@ class UserSeeder extends Seeder
                         "Цвет" => "Хром",
                         "Материал" => "Алюминий",
                     ]
-                ),
-                "quantity" => 600
+                )
             ]
         );
 
@@ -155,8 +152,8 @@ class UserSeeder extends Seeder
         $v_company1->suppliers()->save($s_company2);
         $v_company2->suppliers()->save($s_company1);
 
-        $s_company1->products()->save($product2);
-        $s_company2->products()->save($product1);
-        $s_company3->products()->save($product3);
+        $s_company1->products()->save($product2, ['quantity' => 1500]);
+        $s_company2->products()->save($product1, ['quantity' => 1000]);
+        $s_company3->products()->save($product3, ['quantity' => 600]);
     }
 }

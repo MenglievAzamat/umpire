@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api\Vendors;
 
 use App\Http\Controllers\Controller;
+use App\Scope;
+use App\SupplierCompany;
 use App\VendorCompany;
 use Illuminate\Http\Request;
 
@@ -26,7 +28,7 @@ class VendorCompanyController extends Controller
                 "id" => $product->id,
                 "name" => $product->name,
                 "info" => json_decode($product->info, true),
-                "quantity" => $product->quantity
+                "quantity" => $product->pivot->quantity
             ]);
         }
 
@@ -46,5 +48,26 @@ class VendorCompanyController extends Controller
         $company->save();
 
         return response()->json($company, 201);
+    }
+
+    public function getSuppliers(Request $request) {
+        $companies = $request->user()->companies;
+
+        $scopes = [];
+
+        foreach ($companies as $company) {
+            array_push($scopes, $company->scope_id);
+        }
+
+        $suppliers = [];
+
+        foreach ($scopes as $scope) {
+            array_push($suppliers, [
+                "scope" => Scope::find($scope)->title,
+                "suppliers" => SupplierCompany::where('scope_id', $scope)->get()
+            ]);
+        }
+
+        return response()->json($suppliers);
     }
 }

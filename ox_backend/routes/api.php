@@ -44,7 +44,8 @@ Route::group(
             ['namespace' => 'Vendors', 'prefix' => '/vendor'],
             function () {
                 Route::get('/company/{id}', 'VendorCompanyController@retrieve')->middleware('auth:api');
-                Route::get('/new', 'SupplierCompanyController@create')->middleware('auth:api');
+                Route::get('/suppliers', 'VendorCompanyController@getSuppliers')->middleware('auth:api');
+                Route::post('/new', 'VendorCompanyController@create')->middleware('auth:api');
             }
         );
 
@@ -52,6 +53,7 @@ Route::group(
             ['namespace' => 'Suppliers', 'prefix' => '/supplier'],
             function () {
                 Route::get('/company/{id}', 'SupplierCompanyController@retrieve')->middleware('auth:api');
+                Route::get('/vendors', 'SupplierCompanyController@getVendors')->middleware('auth:api');
                 Route::post('/new', 'SupplierCompanyController@create')->middleware('auth:api');
             }
         );
@@ -68,6 +70,13 @@ Route::group(
             function() {
                 Route::get('/', 'ScopesController@get');
                 Route::post('/new', 'ScopesController@create');
+            }
+        );
+
+        Route::group(
+            ['namespace' => 'Products', 'prefix' => '/product'],
+            function() {
+                Route::get('/{id}', 'ProductsController@get')->middleware('auth:api');
             }
         );
     }

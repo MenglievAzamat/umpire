@@ -17,6 +17,7 @@ class CreateVendorProductTable extends Migration
             $table->id();
             $table->integer("vendor_company_id");
             $table->integer("product_id");
+            $table->bigInteger("quantity");
             $table->timestamps();
         });
     }

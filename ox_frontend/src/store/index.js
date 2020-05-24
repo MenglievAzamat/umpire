@@ -5,7 +5,9 @@ import axios from '../modules/axios'
 // MODULES
 import auth from "./modules/auth"
 import user from "./modules/user"
+import vendor from "./modules/vendor";
 import company from "./modules/company"
+import supplier from "./modules/supplier";
 import customer from "./modules/customer";
 
 if (localStorage.token) {
@@ -30,7 +32,9 @@ export default new Vuex.Store({
   modules: {
       auth,
       user,
+      vendor,
       company,
+      supplier,
       customer
   }
 })

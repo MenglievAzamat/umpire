@@ -22,6 +22,6 @@ class SupplierCompany extends Model
 
     public function products()
     {
-        return $this->belongsToMany("App\Product", "supplier_product", "product_id", "supplier_company_id");
+        return $this->belongsToMany("App\Product", "supplier_product", "product_id", "supplier_company_id")->withPivot('quantity');
     }
 }

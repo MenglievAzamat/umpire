@@ -17,7 +17,6 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string("name");
             $table->json("info");
-            $table->bigInteger("quantity");
             $table->timestamps();
         });
     }

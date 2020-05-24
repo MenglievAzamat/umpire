@@ -48,7 +48,7 @@
                             <b>{{ key }}</b> : {{info}}
                         </p>
                     </div>
-                    <div>Количество товара</div>
+                    <div>{{ product.quantity }}</div>
                 </div>
             </div>
         </div>
