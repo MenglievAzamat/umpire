@@ -23,9 +23,15 @@
                 <button class="success" @click="addCompany">Добавить организацию</button>
             </div>
 
+            <ox-transactions
+                v-if="user.user.role !== 11"
+                :transactions="transactions"
+                :user="user.user"
+            />
+
             <hr/>
 
-            <button class="mt-2" @click="logout">LOGOUT</button>
+            <button class="mt-2 mb-2" @click="logout">LOGOUT</button>
 
             <add-company-modal :scopes="scopes" v-if="modal" @closemodal="modal = false"/>
         </div>
@@ -37,10 +43,11 @@
   import OxInput from "../components/custom/OxInput";
   import AddCompanyModal from "../components/AddCompanyModal";
   import OxCompanies from "../components/custom/OxCompanies";
+  import OxTransactions from "../components/custom/OxTransactions";
 
   export default {
     name: "profile",
-    components: {OxCompanies, AddCompanyModal, OxInput, OxLoading},
+    components: {OxTransactions, OxCompanies, AddCompanyModal, OxInput, OxLoading},
     async created() {
       if (!this.$store.state.auth.user) {
         await this.$store.dispatch("getUser").then(user => {
@@ -55,9 +62,14 @@
       } else {
         if (this.user.user.role !== 11) {
           await this.$store.dispatch("getCompanies");
-          await this.$store.dispatch("getScopes").then(res => {
-            this.scopes = res;
-          });
+          await this.$store.dispatch("getScopes")
+              .then(res => {
+                this.scopes = res;
+              });
+          await this.$store.dispatch("getTransactions")
+              .then(res => {
+                this.transactions = res;
+              });
         }
       }
     },
@@ -65,6 +77,7 @@
       return {
         user: null,
         scopes: [],
+        transactions: [],
 
         modal: false
       }

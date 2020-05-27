@@ -1,20 +1,26 @@
 <template>
     <div class="container white stretch-y">
-        <ox-loading v-if="loading" />
-        <div class="customer-products" v-else>
-            <div
-                class="customer-products__product"
-                v-for="product in products"
-                :key="product.id"
-                @click="product.vendors ? showVendors(product.id) : ''"
-            >
-                <div class="no-vendors" v-if="!product.vendors">
-                    <p>Нет в продаже</p>
-                </div>
-                <h1>{{ product.name }}</h1>
-                <hr />
-                <div class="info" v-for="(info, key) in product.info">
-                    <p><b>{{key}}:</b> {{ info }}</p>
+        <ox-loading v-if="loading"/>
+        <div v-else>
+            <div v-for="(value, key) in products" :key="key">
+                <h1>{{ key }}</h1>
+
+                <div class="customer-products">
+                    <div
+                        class="customer-products__product"
+                        v-for="product in value"
+                        :key="product.id"
+                        @click="product.vendors ? showVendors(product.id) : ''"
+                    >
+                        <div class="no-vendors" v-if="!product.vendors">
+                            <p>Нет в продаже</p>
+                        </div>
+                        <h1>{{ product.name }}</h1>
+                        <hr/>
+                        <div class="info" v-for="(info, key) in product.info">
+                            <p><b>{{key}}:</b> {{ info }}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -23,6 +29,7 @@
 
 <script>
   import OxLoading from "../../components/custom/OxLoading";
+
   export default {
     name: "customer-home",
     components: {OxLoading},

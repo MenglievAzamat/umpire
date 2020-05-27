@@ -16,6 +16,8 @@ class CreateTransactionsTable extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->integer("request_id");
+            $table->integer("vendor_id");
+            $table->integer("supplier_id");
             $table->unsignedSmallInteger("status");
             $table->timestamps();
         });

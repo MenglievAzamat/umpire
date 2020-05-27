@@ -1,11 +1,14 @@
 <template>
     <div class="input">
-        <label :for="label">{{ label }}</label>
+        <label v-if="label" :for="label">{{ label }}</label>
         <input
             :id="label"
             :type="type"
+            :max="max"
             :required="required"
-            @input="updateValue($event.target.value)"
+            :class="{'no-margin' : !label}"
+            v-model="value"
+            @input="updateValue"
             @focusout="checkIfRequired"
             @keypress.enter="$emit('keypress', $event.target)"
         >
@@ -20,20 +23,29 @@
       type: String,
 
       label: {
-        type: String,
-        required: true
+        type: String
       },
 
       required: Boolean,
+
+      max: {
+        type: Number
+      }
     },
     data() {
       return {
-        errors: ""
+        errors: "",
+        value: ""
       }
     },
     methods: {
-      updateValue(value) {
-        this.$emit('input', value)
+      updateValue() {
+        if (this.max < parseInt(this.value)) {
+          this.value = this.max;
+          this.errors = "Значение не может быть выше " + this.max;
+        }
+
+        this.$emit('input', this.type === "number" ? parseInt(this.value) : this.value);
       },
 
       checkIfRequired() {

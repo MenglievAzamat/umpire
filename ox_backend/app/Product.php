@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 class Product extends Model
 {
     protected $fillable = [
-      "name", "info", "quantity"
+      "name", "info"
     ];
 
     public function suppliers() {

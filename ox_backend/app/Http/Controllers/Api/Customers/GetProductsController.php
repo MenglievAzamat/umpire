@@ -26,7 +26,8 @@ class GetProductsController extends Controller
                 "id" => $product->id,
                 "name" => $product->name,
                 "info" => json_decode($product->info),
-                "vendors" => $product->vendors->count()
+                "vendors" => $product->vendors->count(),
+                "scope" => $product->suppliers->first()->scope->title
             ]);
         }
 

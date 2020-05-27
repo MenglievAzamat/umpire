@@ -3,7 +3,7 @@
         <ox-loading v-if="loading" />
         <div class="modal" v-else>
             <div class="modal-header">
-                <h1>Войти</h1>
+                <h1>Добавить организацию</h1>
             </div>
             <div class="modal-body">
                 <ox-input type="text" label="Название" v-model="name" required/>

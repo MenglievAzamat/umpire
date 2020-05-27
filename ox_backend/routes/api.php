@@ -37,6 +37,7 @@ Route::group(
             ['namespace' => 'User', 'prefix' => '/user'],
             function () {
                 Route::get('/companies', 'GetCompaniesController')->middleware('auth:api');
+                Route::get('/transactions', 'GetTransactionsController')->middleware('auth:api');
             }
         );
 
@@ -46,6 +47,9 @@ Route::group(
                 Route::get('/company/{id}', 'VendorCompanyController@retrieve')->middleware('auth:api');
                 Route::get('/suppliers', 'VendorCompanyController@getSuppliers')->middleware('auth:api');
                 Route::post('/new', 'VendorCompanyController@create')->middleware('auth:api');
+                Route::post('/purchase', 'VendorCompanyController@purchase')->middleware('auth:api');
+                Route::put('/transaction/{id}/receive', 'VendorCompanyController@receive')->middleware('auth:api');
+                Route::put('/transaction/{id}/reject', 'VendorCompanyController@reject')->middleware('auth:api');
             }
         );
 
@@ -55,6 +59,10 @@ Route::group(
                 Route::get('/company/{id}', 'SupplierCompanyController@retrieve')->middleware('auth:api');
                 Route::get('/vendors', 'SupplierCompanyController@getVendors')->middleware('auth:api');
                 Route::post('/new', 'SupplierCompanyController@create')->middleware('auth:api');
+                Route::post('/products/add', 'SupplierCompanyController@addProduct')->middleware('auth:api');
+                Route::put('/transaction/{id}/approve', 'SupplierCompanyController@approve')->middleware('auth:api');
+                Route::put('/transaction/{id}/send', 'SupplierCompanyController@send')->middleware('auth:api');
+                Route::put('/transaction/{id}/close', 'SupplierCompanyController@close')->middleware('auth:api');
             }
         );
 

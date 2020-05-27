@@ -96,7 +96,7 @@ hr {
 }
 
 button {
-  width: 10rem;
+  min-width: 10rem;
   height: 3rem;
   border: none;
   text-transform: uppercase;
@@ -161,6 +161,19 @@ button {
   margin-right: 1rem;
 }
 
+.mb-1 {
+  margin-bottom: 1rem;
+}
+
+.mb-2 {
+  margin-bottom: 2rem;
+}
+
+.mx-0 {
+  margin-left: 0;
+  margin-right: 0;
+}
+
 .companies {
   display: flex;
   flex-wrap: wrap;
@@ -187,6 +200,10 @@ button {
       }
     }
   }
+}
+
+.no-margin {
+  margin-top: 0 !important;
 }
 
 .products {
@@ -281,6 +298,27 @@ button {
           &:hover {
             text-decoration: underline;
           }
+        }
+      }
+
+      .attributes {
+        .attribute {
+          display: flex;
+
+          p {
+            margin-right: 0.5rem;
+            margin-top: 0;
+          }
+        }
+      }
+
+      .attributes-add {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .field {
+          width: 30%;
         }
       }
     }

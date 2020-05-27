@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api\Suppliers;
 
 use App\Http\Controllers\Controller;
+use App\Product;
 use App\Scope;
 use App\SupplierCompany;
+use App\Transaction;
 use App\VendorCompany;
 use Illuminate\Http\Request;
 
@@ -40,6 +42,8 @@ class SupplierCompanyController extends Controller
         }
 
         $result = [
+            "id" => $company->id,
+            "user_id" => $company->user_id,
             "name" => $company->name,
             "scope" => $company->scope->title,
             "vendors" => $vendors,
@@ -76,5 +80,42 @@ class SupplierCompanyController extends Controller
         }
 
         return response()->json($vendors);
+    }
+
+    public function addProduct(Request $request) {
+        $attrs = $request->only('company_id', 'name', 'quantity', 'info');
+        $company = SupplierCompany::find($attrs['company_id']);
+        $product = new Product([
+            'name' => $attrs['name'],
+            'info' => $attrs['info']
+        ]);
+        $product->save();
+        $company->products()->save($product, [ 'quantity' => $attrs['quantity'] ]);
+
+        return response()->json(null, 201);
+    }
+
+    public function approve(Request $request, $id) {
+        $transaction = Transaction::find($id);
+        $transaction->status = 1;
+        $transaction->save();
+
+        return response()->json($transaction, 200);
+    }
+
+    public function send(Request $request, $id) {
+        $transaction = Transaction::find($id);
+        $transaction->status = 2;
+        $transaction->save();
+
+        return response()->json($transaction, 200);
+    }
+
+    public function close(Request $request, $id) {
+        $transaction = Transaction::find($id);
+        $transaction->status = 5;
+        $transaction->save();
+
+        return response()->json($transaction, 200);
     }
 }
