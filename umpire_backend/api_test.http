@@ -1,0 +1,16 @@
+POST http://ox.local/api/user/register
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name" : "Test",
+  "email" : "test@test.ru",
+  "password" : "secret",
+  "password_confirmation" : "secret",
+  "role" : "vendor"
+}
+
+###
+
+GET http://ox.local/api/user/logout
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZTBhNTJhMTA4N2I1NzdmNDYxODI3ZTFkMWZlYTFkY2IwNjkxNjI2YjQ1Y2JlMjJhYTY1MjMwNmZhMWNiNTRhMzQ0MzRhODFiM2FlM2Q4MzIiLCJpYXQiOjE1OTA2MjM1MzksIm5iZiI6MTU5MDYyMzUzOSwiZXhwIjoxNjIyMTU5NTM5LCJzdWIiOiI2Iiwic2NvcGVzIjpbXX0.krV-lFQjNQ1A9wJyvamuV0gF9lGyZWw9YW-moHxGztfrfE9JwnPVJd6na2bb5q3PuHphM58-xuUDLouOJ5QR19Jsk-G2lgTybJBw99aqxI5S_YiPdaic8Z-w9GlaqnjmUGm1_XsSQx-Ck0Vs0qNz-VNTSpr6z9KWr9-mYlbMT6LN7I-6065QT79vb0gao_1ZrDUM-UrATo2ud075h0Orj3fPrlQZiqGQ9WRy5ZBC-m52IB5SVd2MhJv8dkEoXALNeiQsHMWS4TWjcFuuZ2_n13Y5fTOL6jkePictsWNtpPLA6vJkM0aht7LPJSPGfCFlm18e2oh5wV1nP2WEaS4EXATDrWUHBuB3Kikue_VnasgXwnuMJKKFnqN8gN6RpmHLdeuYJGZq5O9Hu4yu8320T4DErhXwYCuEg2klPfg0GlDDE4zGSRoX93bCSOBVCN3ibuFD93v-GNEnrfKwZLqyl8f8f5ictYlmYyt-aMeV_56Iafbug7ho_ZFXi67K8YNVYYfF2NNfA4yegZ1acZ8c4dJMZnFKBOQwH8pjpkiK5lGzEUCUjI3otCCWz5SXeujy_i4rNk01b3Vy0-9gdsMmY08231vOVt4JpilXGS1ySYtXE1ePa8IzL_U98YpHEx2sab04puIzN8b6fY6qY1YAmXd10TjeyR-kZY3QZn-La-8

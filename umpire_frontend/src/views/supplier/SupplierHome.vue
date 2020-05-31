@@ -1,16 +1,22 @@
 <template>
     <div class="container white stretch-y">
         <ox-loading v-if="loading"/>
-        <div v-else>
-            <div
-                v-for="vendor in vendors"
-                :key="vendor.scope"
-            >
-                <ox-companies
-                    :label="vendor.scope"
-                    :companies="vendor.vendors"
-                    :role="12" />
-                <hr/>
+        <div class="center" v-else>
+            <h1>ПРОДАВЦЫ</h1>
+
+            <hr/>
+
+            <div>
+                <div
+                    v-for="vendor in vendors"
+                    :key="vendor.scope"
+                >
+                    <ox-companies
+                        :label="vendor.scope"
+                        :companies="vendor.vendors"
+                        :role="12"/>
+                    <hr/>
+                </div>
             </div>
         </div>
     </div>

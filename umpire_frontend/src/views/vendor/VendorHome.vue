@@ -1,7 +1,11 @@
 <template>
     <div class="container white stretch-y">
         <ox-loading v-if="loading"/>
-        <div v-else>
+        <div class="center" v-else>
+            <h1 class="mb-2">ПОСТАВЩИКИ</h1>
+
+            <hr />
+
             <div
                 v-for="supplier in suppliers"
                 :key="supplier.scope"
@@ -46,3 +50,5 @@
     }
   }
 </script>
+
+

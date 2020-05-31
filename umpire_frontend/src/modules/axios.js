@@ -2,7 +2,7 @@ import axios from "axios";
 import store from "../store";
 
 const instance = axios.create({
-    baseURL: "http://ox.local/api"
+    baseURL: "http://umpire.local/api"
 });
 
 instance.interceptors.response.use(null, error => {
